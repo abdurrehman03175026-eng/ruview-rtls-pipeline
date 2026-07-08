@@ -78,7 +78,7 @@ Evaluated via a continuous 360-degree rotation test sequence over a 15-second tr
 | Mean Single-Node Signal Strength | -60.28 dBm | Baseline Degradation |
 | **Mean Fused-Topology Signal Strength** | **-54.75 dBm** | **Optimized Path** |
 | **Net Attenuation Recovery** | **+5.53 dB** | **Gain Achieved** |
-![Week 3 Multi Node Fusion Coverage](week_03_fusion/multi_node_coverage_log.png)
+
 
 ### 📊 Analytical Performance Deliverable
 Below is the exported multi-node log tracking comparison showing how spatial fusion bridges signal dropouts smoothly during rotation:

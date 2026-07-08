@@ -16,7 +16,9 @@ week_04_fingerprinting/ — High-dimensional rolling time-series feature extract
 
 week_05_automation/ — Dynamic hysteresis finite state-machine automation and native process user interfaces.
 
-week_06_review/ — Adversarial environmental stress-testing, boundary mapping, and static code quality standardization.
+* week_06_review/ — Adversarial environmental stress-testing, boundary mapping, and static code quality standardization.
+
+
 ---
 
 ## 🚀 Week 1: Telemetry Acquisition & Serialization Contract

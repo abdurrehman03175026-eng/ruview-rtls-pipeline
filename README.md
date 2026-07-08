@@ -6,10 +6,17 @@ This repository serves as the engineering implementation hub for the 6-week ente
 
 ## 📂 Repository Architecture
 
-* `week_01_telemetry/` - Asynchronous unbuffered vs. memory-buffered ingestion pipelines.
-* `week_02_dsp/` - Statistical data filtering and Kalman hyperparameter optimization.
-* `week_03_fusion/` - Multi-node spatial telemetry fusion over distributed brokers.
+week_01_telemetry/ — Asynchronous unbuffered vs. memory-buffered ingestion pipelines.
 
+week_02_dsp/ — Statistical data filtering and Kalman hyperparameter optimization.
+
+week_03_fusion/ — Multi-node spatial telemetry fusion over wildcard MQTT brokerage networks.
+
+week_04_fingerprinting/ — High-dimensional rolling time-series feature extraction and machine learning scene classification.
+
+week_05_automation/ — Dynamic hysteresis finite state-machine automation and native process user interfaces.
+
+week_06_review/ — Adversarial environmental stress-testing, boundary mapping, and static code quality standardization.
 ---
 
 ## 🚀 Week 1: Telemetry Acquisition & Serialization Contract

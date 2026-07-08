@@ -90,29 +90,61 @@ By prioritizing the maximum un-attenuated signal stream, the network fusion engi
 
 ---
 
+## 📅 Week 4: RF Fingerprinting & Scene Classification
+
+### 🔬 Architecture Summary
+Transitioned from fragile geometric distance metrics to localized Scene-Profile Fingerprinting to identify user positioning. Built an advanced Time-Series Feature Extraction Matrix that slides a 3-second window ($Window\ Size = 30$ frames at 10Hz) across raw signal tracks to compute complex structural shape descriptors: Mean, Standard Deviation, Skewness, and First-Order Variance (Delta Velocity). 
+
+The module decoupling architecture splits these processes across dedicated modules:
+* `feature_extractor.py`: Handles the sliding window transformation pipelines.
+* `ablation_testbed.py`: Isolates and trains a $K$-Nearest Neighbors ($K=3$) classifier over specific feature sub-matrices.
+* `evaluation_suite.py`: Benchmarks performance and builds analytical tables.
+
+### 📊 Feature Ablation Evaluation Matrix
+Evaluated model performance metrics across three distinct feature-isolation configurations to determine classification stability under altered user body vectors:
+
+| Ablation Feature Configuration | Accuracy | Precision | Recall | Target State |
+| :--- | :--- | :--- | :--- | :--- |
+| (1) Raw RSSI Averages Only | 1.0000 | 1.0000 | 1.0000 | Baseline |
+| (2) RSSI Average + Rolling StdDev | 1.0000 | 1.0000 | 1.0000 | Enhanced |
+| **(3) Full Time-Series Feature Matrix** | **1.0000** | **1.0000** | **1.0000** | **Production Core** |
+
+### 📈 Engineering Pruning Justification & Analysis
+The ablation testbed yields perfect $1.0000$ scores across all three evaluation tiers. This behavior occurs because the physical spacing between target scenes (Desk at $\approx -53$ dBm vs. Doorway at $\approx -73$ dBm) creates a wide, distinct spatial margin that the KNN boundary can easily separate, even when simulated user path movements alter local body vectors.
+
+**Pruning Strategy Choice:** Despite the statistical score redundancy in this baseline simulation, we explicitly **reject** pruning the advanced time-series features (Skewness and Delta Velocity). In an active enterprise-grade deployment environment, external multi-path noise flutter or third-party moving human obstacles can easily skew raw RSSI averages by up to 15 dBm, which completely collapses simple threshold systems like Configuration 1. Retaining the full feature matrix ensures the model reads the structural shape and movement velocity of the wave rather than just its raw height, providing critical algorithmic resilience against real-world environment changes.
+
+---
+
 ## 🛠️ Repository File Structures
 ```text
 D:/ruview_telemetry/
 │
 ├── week_01_telemetry/
 │   ├── __init__.py
-│   ├── telemetry_buffer_queue.py
-│   └── pipeline_performance_metrics.png
+│   ├── telemetry_buffer_queue.py         
+│   └── pipeline_performance_metrics.png   
 │
 ├── week_02_dsp/
 │   ├── __init__.py
-│   ├── data_loader.py
-│   ├── extract_mmfi.py
-│   ├── filters.py
-│   ├── tuning_matrix.py
-│   ├── evaluation_suite.py
-│   └── dsp_tuning_matrix.png
+│   ├── data_loader.py                   
+│   ├── extract_mmfi.py                   
+│   ├── filters.py                       
+│   ├── tuning_matrix.py                 
+│   ├── evaluation_suite.py              
+│   └── dsp_tuning_matrix.png             
 │
 ├── week_03_fusion/
 │   ├── __init__.py
-│   ├── broker_subscriber.py
-│   ├── fusion_engine.py
-│   ├── evaluation_suite.py
-│   └── multi_node_coverage_log.png
+│   ├── broker_subscriber.py             
+│   ├── fusion_engine.py                  
+│   ├── evaluation_suite.py               
+│   └── multi_node_coverage_log.png      
 │
-└── README.md
+├── week_04_fingerprinting/
+│   ├── __init__.py                      
+│   ├── feature_extractor.py             
+│   ├── ablation_testbed.py               
+│   └── evaluation_suite.py               
+│
+└── README.md                            
